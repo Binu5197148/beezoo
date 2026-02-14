@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beezoo - Smart Reviews for Smart Buyers</title>
+    <meta name="description" content="Honest reviews of digital products, tools, and services that actually work.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -2px;
+        }
+        
+        .tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .intro h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        
+        .intro p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .products {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .product-card.green {
+            border-left-color: #00d084;
+        }
+        
+        .product-card.purple {
+            border-left-color: #764ba2;
+        }
+        
+        .product-card.blue {
+            border-left-color: #667eea;
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .product-title h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .product-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .rating {
+            color: #feca57;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #444;
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d084;
+            font-weight: bold;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        
+        .price small {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .disclaimer {
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .disclaimer strong {
+            color: #333;
+        }
+        
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .product-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .intro h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🐝 Beezoo</div>
+        <div class="tagline">Smart Reviews for Smart Buyers</div>
+    </header>
+    
+    <div class="container">
+        <section class="intro">
+            <h1>Tools That Actually Work</h1>
+            <p>We test digital products so you don't waste money. Honest reviews, real results, no BS.</p>
+        </section>
+        
+        <section class="products">
+            <!-- Product 1: Crypto Crusher -->
+            <article class="product-card">
+                <div class="product-header">
+                    <div class="product-icon">📈</div>
+                    <div class="product-title">
+                        <h2>Crypto Crusher</h2>
+                        <div class="product-meta">
+                            <span class="rating">★★★★☆</span>
+                            <span>Crypto Trading</span>
+                            <span>Automated</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="product-description">
+                    Automated cryptocurrency trading system that uses algorithmic analysis to identify high-probability trade setups. Tested for 30 days with real results.
+                </p>
+                
+                <ul class="product-features">
+                    <li>68% win rate in our testing</li>
+                    <li>Multi-exchange support (Binance, Coinbase, Kraken)</li>
+                    <li>Built-in risk management</li>
+                    <li>Mobile alerts for all trades</li>
+                    <li>34% ROI in first month (tested)</li>
+                </ul>
+                
+                <div class="product-footer">
+                    <div class="price">$47<small>/month</small></div>
+                    <a href="#" class="btn-primary">Read Full Review →</a>
+                </div>
+            </article>
+            
+            <!-- Product 2: Digital Marketing Empire -->
+            <article class="product-card green">
+                <div class="product-header">
+                    <div class="product-icon" style="background: linear-gradient(135deg, #00d084 0%, #00b894 100%);">🎯</div>
+                    <div class="product-title">
+                        <h2>Digital Marketing Empire</h2>
+                        <div class="product-meta">
+                            <span class="rating">★★★★★</span>
+                            <span>Business Training</span>
+                            <span>Beginner Friendly</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="product-description">
+                    Comprehensive training program + automation toolkit for building digital marketing businesses. Went from $0 to $4,200/month in 90 days.
+                </p>
+                
+                <ul class="product-features">
+                    <li>12-week step-by-step program</li>
+                    <li>47+ ready-to-use templates</li>
+                    <li>Private community of 3,400+ marketers</li>
+                    <li>Lifetime updates included</li>
+                    <li>2,824% ROI in 90 days (personal result)</li>
+                </ul>
+                
+                <div class="product-footer">
+                    <div class="price">$297<small>one-time</small></div>
+                    <a href="#" class="btn-primary">Read Full Review →</a>
+                </div>
+            </article>
+            
+            <!-- Product 3: AI Automation Pro -->
+            <article class="product-card purple">
+                <div class="product-header">
+                    <div class="product-icon" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">🤖</div>
+                    <div class="product-title">
+                        <h2>AI Automation Pro</h2>
+                        <div class="product-meta">
+                            <span class="rating">★★★★☆</span>
+                            <span>AI Tools</span>
+                            <span>Productivity</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="product-description">
+                    Complete AI automation suite for content creation, social media management, and business workflows. Save 20+ hours per week.
+                </p>
+                
+                <ul class="product-features">
+                    <li>AI content generation (blogs, social, ads)</li>
+                    <li>Automated social media scheduling</li>
+                    <li>Email sequence automation</li>
+                    <li>Integration with 50+ tools</li>
+                    <li>24/7 AI assistant included</li>
+                </ul>
+                
+                <div class="product-footer">
+                    <div class="price">$97<small>/month</small></div>
+                    <a href="#" class="btn-primary">Read Full Review →</a>
+                </div>
+            </article>
+            
+            <!-- Product 4: Freelance Mastery -->
+            <article class="product-card blue">
+                <div class="product-header">
+                    <div class="product-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">💼</div>
+                    <div class="product-title">
+                        <h2>Freelance Mastery</h2>
+                        <div class="product-meta">
+                            <span class="rating">★★★★☆</span>
+                            <span>Freelancing</span>
+                            <span>Career</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="product-description">
+                    Step-by-step system to land high-paying freelance clients and scale to $10k/month. Templates, scripts, and client acquisition strategies included.
+                </p>
+                
+                <ul class="product-features">
+                    <li>Proposal templates that win jobs</li>
+                    <li>Client outreach scripts</li>
+                    <li>Pricing strategy framework</li>
+                    <li>Portfolio optimization guide</li>
+                    <li>From $0 to $10k/month roadmap</li>
+                </ul>
+                
+                <div class="product-footer">
+                    <div class="price">$197<small>one-time</small></div>
+                    <a href="#" class="btn-primary">Read Full Review →</a>
+                </div>
+            </article>
+        </section>
+        
+        <div class="disclaimer">
+            <strong>Full Disclosure:</strong> We may earn a commission if you purchase through our links, at no extra cost to you. We only recommend products we've personally tested and believe in. Results may vary and are not guaranteed.
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Beezoo. Honest reviews for smart buyers.</p>
+    </footer>
+</body>
+</html>

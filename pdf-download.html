@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baixar Guia Gratuito | Beezoo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+        }
+        
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+        
+        .privacy {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .benefits {
+            text-align: left;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .benefits h3 {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .benefits ul {
+            list-style: none;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .benefits li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d084;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">📊</div>
+        <h1>Baixe o Guia Completo</h1>
+        <p>PDF com resultado detalhado dos testes + templates + checklist de implementação</p>
+        
+        <div class="benefits">
+            <h3>O que você vai receber:</h3>
+            <ul>
+                <li>Relatório completo dos 30 dias de teste</li>
+                <li>Checklist de implementação passo a passo</li>
+                <li>Templates de emails que usei</li>
+                <li>Estratégia de tráfego orgânico</li>
+                <li>Erros a evitar (economize tempo e dinheiro)</li>
+            </ul>
+        </div>
+        
+        <form id="leadForm">
+            <div class="form-group">
+                <label>Seu melhor email *</label>
+                <input type="email" name="email" required placeholder="exemplo@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Seu nome *</label>
+                <input type="text" name="name" required placeholder="Como quer ser chamado?">
+            </div>
+            
+            <button type="submit" class="btn-submit">📥 Receber Guia Gratuito</button>
+        </form>
+        
+        <p class="privacy">🔒 Seu email está seguro. Não enviamos spam. Você pode se descadastrar a qualquer momento.</p>
+    </div>
+    
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const email = formData.get('email');
+            
+            // Store lead (will integrate with backend later)
+            let leads = JSON.parse(localStorage.getItem('beezoo_leads') || '[]');
+            leads.push({
+                email: email,
+                name: formData.get('name'),
+                source: 'pdf_guide',
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('beezoo_leads', JSON.stringify(leads));
+            
+            // For now, redirect to PDF download
+            alert('🎉 Obrigado! Em breve você receberá o guia no email.\n\nEnquanto isso, confira os sistemas recomendados na página anterior.');
+            
+            // Redirect back to comparison page
+            window.location.href = '/testamos-4-sistemas.html';
+        });
+    </script>
+</body>
+</html>
